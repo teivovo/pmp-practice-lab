@@ -2,6 +2,8 @@
 
 A buildless, browser-only practice engine for the July 2026 PMP examination content outline, with PMBOK Guide Eighth Edition context. No account, API key, database, analytics, or runtime dependency.
 
+**Live app:** [teivovo.github.io/pmp-practice-lab](https://teivovo.github.io/pmp-practice-lab/)
+
 ## Run locally
 
 Install Node.js if it is not already present, then run from this repository:
@@ -46,6 +48,8 @@ node --test pmp-practice/tests/*.test.cjs
 ```
 
 Tests cover bank uniqueness and coverage, exact scoring, linked-case grouping, filtered selection, full-session cookie size/round-trip, and saved-state validation.
+
+The timer tests also cover time spent away from the page, break exclusion, break overrun, expiry, and paused practice. Browser checks verified wrong-answer guidance, selection limits, cookie restoration, matching via dropdowns, keyboard hotspots, both section locks and breaks, final-review-only behavior, and mobile layout. Drag-and-drop is implemented with native browser events; the automated browser interaction did not establish a successful pointer drag, so use the verified dropdown alternative if your browser does not support dragging. These checks validate the engine, not the exam difficulty of the authored content.
 
 ## Research and limitations
 
