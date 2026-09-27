@@ -28,10 +28,11 @@ jobs:
           node --check pmp-practice/app.js
           node --check pmp-practice/core.js
           node --check pmp-practice/questions.js
+          node --check pmp-practice/questions-expansion.js
       - name: Prepare static files
         run: |
           mkdir _site
-          cp pmp-practice/index.html pmp-practice/styles.css pmp-practice/app.js pmp-practice/core.js pmp-practice/questions.js pmp-practice/topics.js _site/
+          cp pmp-practice/index.html pmp-practice/styles.css pmp-practice/app.js pmp-practice/core.js pmp-practice/questions.js pmp-practice/topics.js pmp-practice/questions-expansion.js _site/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4

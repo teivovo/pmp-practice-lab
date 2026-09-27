@@ -20,9 +20,9 @@ Open http://127.0.0.1:4173. This local server only serves static files; all answ
 - **Timed practice:** 80 seconds per selected question, pausable, with feedback after submission.
 - **Full mock:** 180 unique questions, 240 minutes, two optional 10-minute breaks, and no explanations until final submission. The mock timer continues when the tab is closed or the learner leaves. Sections lock when submitted. Breaks end automatically after 10 minutes; leaving the page does not extend them.
 
-The fixed bank contains **59 People / 74 Process / 47 Business Environment** items, rounding the official 33% / 41% / 26% weighting to 180. It uses 72 predictive and 108 agile/hybrid items, and covers all 26 ECO tasks. Repeated sessions reuse this bank in different orders; no questions are generated at runtime.
+The bank contains **400 original questions: 131 People / 164 Process / 105 Business Environment**, covering all 26 ECO tasks. Each full mock samples **59 People / 74 Process / 47 Business Environment**, rounding the official 33% / 41% / 26% weighting to 180, with 72 predictive and 108 agile/hybrid items. Every mock includes all supported interaction formats. Repeated attempts sample different subsets and may overlap; no questions are generated at runtime.
 
-Six linked cases contain three questions each. The full mock places these 18 items first, followed by two sections of 81 independent items. **These section sizes are our simulation choice, not a PMI-published fixed allocation.** Unlike the official exam's 170 scored plus 10 unscored items, all 180 practice items receive equal weight. Multiple-response and matching items require an exact complete answer. This educational score is not PMI's psychometric scoring model or a pass prediction.
+Twelve linked cases contain three questions each. Each full mock selects six complete cases and places these 18 items first, followed by two sections of 81 independent items. **These section sizes are our simulation choice, not a PMI-published fixed allocation.** Unlike the official exam's 170 scored plus 10 unscored items, all 180 practice items receive equal weight. Multiple-response and matching items require an exact complete answer. This educational score is not PMI's psychometric scoring model or a pass prediction.
 
 Formats: single response, multiple response, shared cases and exhibits, chart interpretation, matching, chart matching, SVG hotspots, and pull-down lists. Drag-and-drop matching has a keyboard/touch dropdown alternative. The visual exhibits are original SVG diagrams, not screenshots of PMI questions. Format proportions are not claimed to match undisclosed PMI proportions.
 
@@ -39,7 +39,7 @@ The save indicator verifies cookie read-back. If the browser blocks cookies or s
 3. Open **Actions → Publish PMP Practice Lab → Run workflow**, or push a new commit to `main` or `master`.
 4. The completed deployment exposes the Pages URL, normally `https://USERNAME.github.io/REPOSITORY/`.
 
-The included `.github/workflows/pages.yml` checks the bank and scoring and publishes only the six static app files. Relative asset URLs and cookie paths support a GitHub Pages project subdirectory. No build service or server-side processing is required. Alternatively, upload the six app files directly to any static host.
+The included `.github/workflows/pages.yml` checks the bank and scoring and publishes only the seven static app files. Relative asset URLs and cookie paths support a GitHub Pages project subdirectory. No build service or server-side processing is required. Alternatively, upload the seven app files directly to any static host.
 
 ## Tests
 
@@ -47,13 +47,13 @@ The included `.github/workflows/pages.yml` checks the bank and scoring and publi
 node --test pmp-practice/tests/*.test.cjs
 ```
 
-Tests cover bank uniqueness and coverage, exact scoring, linked-case grouping, filtered selection, full-session cookie size/round-trip, and saved-state validation.
+Tests cover all 400 keys, uniqueness and topic coverage, 200 seeded mock samples with exact quotas and complete cases, numerical keys, filtered selection, full-session cookie size/round-trip, and compatibility with the original 180-item saves.
 
 The timer tests also cover time spent away from the page, break exclusion, break overrun, expiry, and paused practice. Browser checks verified wrong-answer guidance, selection limits, cookie restoration, matching via dropdowns, keyboard hotspots, both section locks and breaks, final-review-only behavior, and mobile layout. Drag-and-drop is implemented with native browser events; the automated browser interaction did not establish a successful pointer drag, so use the verified dropdown alternative if your browser does not support dragging. These checks validate the engine, not the exam difficulty of the authored content.
 
 ## Research and limitations
 
-Research checked 27 September 2026 against these primary sources:
+Research checked 28 September 2026 against these primary sources:
 
 - [PMI: July 2026 PMP Exam Content Outline](https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/new-pmp-examination-content-outline-2026.pdf)
 - [PMI: Updated PMP exam](https://www.pmi.org/certifications/project-management-pmp/new-exam)
@@ -62,3 +62,5 @@ Research checked 27 September 2026 against these primary sources:
 The ECO, rather than PMBOK alone, defines the tested work. The latest guide's public overview identifies value, quality, accountable leadership, sustainability, empowered teams, and tailoring as important themes. We have not reproduced the guide or claimed page-level validation against its full copyrighted text.
 
 All practice questions and rationales are original educational content. They imitate publicly described situational formats, not actual or recalled certification items. They have not undergone PMI-style psychometric calibration or independent review by a certified PMP trainer. For high-stakes preparation, use them alongside official materials. No affiliation, endorsement, exam-difficulty equivalence, or pass guarantee is implied. PMP and PMBOK are Project Management Institute trademarks.
+
+See [the question-bank research](QUESTION-BANK-RESEARCH.md) for verified official and third-party resources, edition checks, and content provenance.
