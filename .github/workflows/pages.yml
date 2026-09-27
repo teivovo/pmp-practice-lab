@@ -1,0 +1,42 @@
+name: Publish PMP Practice Lab
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate bank and scoring
+        run: node --test pmp-practice/tests/*.test.cjs
+      - name: Check JavaScript syntax
+        run: |
+          node --check pmp-practice/app.js
+          node --check pmp-practice/core.js
+          node --check pmp-practice/questions.js
+      - name: Prepare static files
+        run: |
+          mkdir _site
+          cp pmp-practice/index.html pmp-practice/styles.css pmp-practice/app.js pmp-practice/core.js pmp-practice/questions.js pmp-practice/topics.js _site/
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
